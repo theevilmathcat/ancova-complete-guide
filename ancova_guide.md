@@ -194,104 +194,125 @@ ANCOVA assumes a single fair adjustment point (“as if everyone had the same we
 - Interaction test → Does weight affect squat the **same way** across programs?  
   - If no → standard ANCOVA is invalid
  
-### Solved Exercises
+# Solved Exercises
+
 As you know by now your teacher is a moron. And they make a point of overly complicating things into oblivion. So my job as a cat is to call your teacher a retard and simplify your life. You are not my enemy as long as you bring me food. So in the spirit of college complication here we go:
-#### Overly complicated questions to answer
-"We want to verify the effect of 2 substances (A and B) on the growth of the circumference of algae X. For each medium, we measured the average cell circumference every 2 days."
 
-"Culture days: 1, 3, 5, 7, 9;
-Medium A: 12.2, 14.2, 16.7, 18, 27.3;
-Medium B: 9.8, 10.8, 13.3, 15.7, 20.8.
+---
 
-a) Can we say, with a 5% risk, that substances A and B have a different effect on algae growth?
-b) In a natural medium, the slope of the growth line is 0.84. Do A and B significantly influence growth?
-c) If we sample after 4 days, what will be the estimated value of the average algae circumference in medium A, and its 95% confidence interval / safety coefficient?"
+## Overly complicated questions to answer
 
-#### Solution
-Response (Y): Average circumference (like max squat).
-Factor: Medium/Substance (A or B, like training program).
-Covariate: Days (like body weight)—a numerical predictor to control for time's effect on growth.
+> "We want to verify the effect of 2 substances (A and B) on the growth of the circumference of algae X. For each medium, we measured the average cell circumference every 2 days."
+>
+> **Culture days:** 1, 3, 5, 7, 9  
+> **Medium A:** 12.2, 14.2, 16.7, 18, 27.3  
+> **Medium B:** 9.8, 10.8, 13.3, 15.7, 20.8  
+>
+> **a)** Can we say, with a 5% risk, that substances A and B have a different effect on algae growth?  
+> **b)** In a natural medium, the slope of the growth line is 0.84. Do A and B significantly influence growth?  
+> **c)** If we sample after 4 days, what will be the estimated value of the average algae circumference in medium A, and its 95% confidence interval / safety coefficient?"
 
-The goal is to compare A vs. B while adjusting for days, assuming the relationship (slope) between days and circumference is the same for both (parallel lines). If slopes differ, standard ANCOVA doesn't apply directly.
+---
 
-Data Setup in Minitab
+## Solution
 
-Open Minitab and enter the data into a worksheet:
-Column C1: Days – enter 1, 3, 5, 7, 9 (twice, once for A and once for B).
-Column C2: Medium – enter A, A, A, A, A, B, B, B, B, B.
-Column C3: Circumference – enter 12.2, 14.2, 16.7, 18, 27.3, 9.8, 10.8, 13.3, 15.7, 20.8.
-It should look like your guide's athlete table:
-Days,Medium,Circumference
-1,A,12.2
-3,A,14.2
-5,A,16.7
-7,A,18.0
-9,A,27.3
-1,B,9.8
-3,B,10.8
-5,B,13.3
-7,B,15.7
-9,B,20.8
+**Response (Y):** Average circumference  
+**Factor:** Medium/Substance (A or B)  
+**Covariate:** Days  
 
-Minitab Steps (Following Your Guide)
-Follow Stat → ANOVA → General Linear Model → Fit General Linear Model (like section 6 in your guide).
-Step 1: Check if Slopes Differ Between A and B (Homogeneity Assumption, Like QUESTION 2 in Your Guide)
+The goal is to compare A vs. B while adjusting for days, assuming slopes are equal (parallel lines). If not, ANCOVA isn't valid.
 
-Response: Circumference.
-Model: Click the box, add Days (covariate) and Medium (factor). Then click "Add interaction" to include Days × Medium.
-Run the model.
+---
 
-Key outputs (what Minitab shows, confirmed by computation):
+### Data Setup in Minitab
 
-Slope for Days (overall relationship): 1.700, p = 0.002 (significant, like QUESTION 1 in your guide—covariate is useful).
-Interaction (Days × Medium): Coefficient = -0.355, p = 0.468 (> 0.05).
-Interpretation (from your guide): Slopes do NOT differ between A and B (p > 0.05). The relationship between days and circumference is the same for both. Standard ANCOVA is valid—proceed without interaction to compare adjusted groups.
+Enter data:
+
+| Days | Medium | Circumference |
+|------|--------|----------------|
+| 1 | A | 12.2 |
+| 3 | A | 14.2 |
+| 5 | A | 16.7 |
+| 7 | A | 18.0 |
+| 9 | A | 27.3 |
+| 1 | B | 9.8 |
+| 3 | B | 10.8 |
+| 5 | B | 13.3 |
+| 7 | B | 15.7 |
+| 9 | B | 20.8 |
 
 
-Step 2: Run Standard ANCOVA (Without Interaction, Like Main Guide Steps)
+---
 
-Response: Circumference.
-Model: Days and Medium (no interaction).
-Run the model.
+## Minitab Steps (Following Your Guide)
 
-Key outputs:
+### Step 1: Check if Slopes Differ (Interaction Test)
 
-Slope for Days: 1.523, p < 0.001 (significant—days affect circumference).
-Medium (B vs. A): Coefficient = -3.600, p = 0.024 (< 0.05).
-Interpretation: After adjusting for days, A and B differ significantly. The adjusted mean circumference is higher for A by 3.6 units.
+Model: Days, Medium, Days×Medium
 
+**Key outputs:**
 
-For Part a): Do A and B Have Different Actions on Growth? (5% Risk = α=0.05)
+- Slope for Days: **1.700**, p = **0.002**  
+- Interaction Days×Medium: coefficient = **-0.355**, p = **0.468**
 
-This is the p-value for Medium in the standard ANCOVA above (p=0.024 < 0.05).
-Answer: Yes, you can say with 5% risk that A and B have different actions on algae growth. Substance A leads to higher average circumference after controlling for days (fair comparison, like your guide's section 3).
-If you want to visualize: Graph → Scatterplot with fit lines (group by Medium) to see parallel lines with different intercepts.
+**Interpretation:**  
+Slopes **do not differ** (p > 0.05). Standard ANCOVA is valid.
 
-For Part b): Do A and B Significantly Influence Growth Compared to Natural Slope of 0.84?
+---
 
-Since slopes don't differ (from Step 1), A and B have the same growth rate (slope = 1.523 from Step 2). But the question asks about A and B separately vs. natural.
-Run separate regressions (like your guide's regression link, section 4): Stat → Regression → Fit Regression Model.
-Subset for A: Response = Circumference, Continuous = Days (filter rows where Medium = A).
-Slope = 1.700, SE = 0.410, p (vs. 0) = 0.025.
-Test vs. 0.84: t = (1.700 - 0.84) / 0.410 = 2.10, df=3, p ≈ 0.127 (>0.05). Not significant.
+### Step 2: Standard ANCOVA (No Interaction)
 
-Subset for B: Same steps (filter Medium = B).
-Slope = 1.345, SE = 0.206, p (vs. 0) = 0.007.
-Test vs. 0.84: t = (1.345 - 0.84) / 0.206 = 2.45, df=3, p ≈ 0.092 (>0.05). Not significant.
+Model: Days + Medium
 
+**Key outputs:**
 
-Answer: No, neither A nor B significantly influences the growth rate compared to the natural slope of 0.84 (both p > 0.05 at 5% risk). The slopes are higher but not statistically different from natural. (If your exam allows marginal significance, note B is close at p=0.092, but strictly no at 5%.)
-Tip: To get p for t=2.10 or 2.45 (df=3), use Calc → Probability Distributions → t in Minitab, or a t-table.
+- Slope (Days): **1.523**, p < **0.001**  
+- Medium (B vs. A): coefficient = **-3.600**, p = **0.024**
 
-For Part c): Estimated Average Circumference for A After 4 Days, with 95% Confidence Interval
+**Interpretation:**  
+After adjusting for days, **A and B differ significantly**; A has the higher adjusted mean.
 
-Use the regression for A (from part b).
-After fitting, go to Stat → Regression → Predict.
-Enter Days = 4.
-Select "Confidence limits" for the mean (not prediction interval—question asks for average/mean circumference).
+---
 
-Output:
-Estimated value: 15.98.
-95% Confidence Interval: 12.07 to 19.89.
+## Part (a): Do A and B Have Different Actions on Growth?
 
-Answer: The estimated average circumference for medium A after 4 days is 15.98. The 95% confidence interval is [12.07, 19.89]. (This is the "fairness correction" from your guide—adjusted via the regression line.)
+Yes.  
+p = 0.024 < 0.05 ⇒ **significant difference** between A and B.
+
+---
+
+## Part (b): Compare Slopes to Natural Slope (0.84)
+
+Separate regressions:
+
+### Medium A
+- Slope = **1.700**, SE = 0.410  
+- Test vs. 0.84:  
+  t = (1.700 – 0.84) / 0.410 = **2.10**, p ≈ **0.127**
+
+### Medium B
+- Slope = **1.345**, SE = 0.206  
+- Test vs. 0.84:  
+  t = (1.345 – 0.84) / 0.206 = **2.45**, p ≈ **0.092**
+
+**Interpretation:**  
+Neither slope is significantly different from 0.84 at α = 0.05.
+
+**Answer:**  
+No, A and B do not significantly influence the growth rate compared with the natural slope.
+
+---
+
+## Part (c): Prediction After 4 Days for Medium A
+
+Regression for A:
+
+- Predicted value at Days = 4: **15.98**  
+- 95% confidence interval: **[12.07, 19.89]**
+
+**Answer:**  
+Estimated circumference after 4 days in medium A is **15.98**,  
+with a 95% CI of **12.07 to 19.89**.
+
+---
+
