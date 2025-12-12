@@ -87,7 +87,7 @@ Fair comparison of programs.
 
 ---
 
-## 8. Covariate Confusion Fix
+## 8. Covariate Idea
 Think of the covariate as a **fairness correction variable**.
 
 ---
