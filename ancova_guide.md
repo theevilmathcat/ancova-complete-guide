@@ -314,5 +314,7 @@ Regression for A:
 Estimated circumference after 4 days in medium A is **15.98**,  
 with a 95% CI of **12.07 to 19.89**.
 
+**Summary**
+😾 Bruh, ain't gonna get worse than this. If you need any further help, buy me cat food.😾
 ---
 
