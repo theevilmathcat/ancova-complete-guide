@@ -1,6 +1,6 @@
 # ANCOVA Exercise: Weightlifting Data
 
-The following is popcorn an ANCOVA exercise to explain how this works.
+The following is an ANCOVA exercise to explain how this works.
 
 The idea here is: experienced and inexperienced athletes with different bodyweights and total deadlifts they did (in kg).
 
@@ -56,4 +56,5 @@ The idea here is: experienced and inexperienced athletes with different bodyweig
 | Group         | Estimated Slope | SE of Slope | t = (Slope − 2.8) / SE | df | p-value | Conclusion (at α = 0.05)                                      |
 |---------------|-----------------|-------------|-------------------------|----|---------|--------------------------------------------------------------|
 | Inexperienced | 2.430           | 0.0363      | -10.193                 | 23 | 0.0000  | p < 0.05 → Significantly different from 2.8 (lower than 2.8) |
+
 | Experienced   | 2.7066          | 0.0786      | -1.188                  | 23 | 0.247   | p > 0.05 → Not significantly different from 2.8              |
